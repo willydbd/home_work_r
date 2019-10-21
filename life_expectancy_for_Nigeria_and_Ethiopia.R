@@ -1,0 +1,11 @@
+library(tidyverse)
+library(ggrepel)
+library(ggthemes)
+library(dslabs)
+data("gapminder")
+labels<-data.frame(country=countries,x=c(1995,1999),y=c(56,50))
+countries<-c("Nigeria","Ethiopia")
+gapminder%>%filter(country%in%countries)%>%
+  ggplot(aes(year,life_expectancy,col=country))+
+  geom_line()+geom_text(data=labels,aes(x,y,label=country))+
+  theme(legend.position="none")
